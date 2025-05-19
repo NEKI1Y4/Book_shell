@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход — Давай Почитаем</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #F8F6E3; }
+    .btn-header { /* твои стили */ }
+    .form-input { /* твои стили */ }
+  </style>
+</head>
+<body>
+  <div class="flex items-center justify-center min-h-screen">
+    <form method="post" class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="mb-4">
+      {% for category, message in messages %}
+        <div class="p-2 rounded text-center {% if category == 'success' %}bg-green-200 text-green-900{% elif category == 'danger' %}bg-red-200 text-red-900{% else %}bg-yellow-100 text-yellow-900{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="mb-4">
+            {% for category, message in messages %}
+              <div class="p-2 rounded text-center {% if category == 'success' %}bg-green-200 text-green-900{% elif category == 'danger' %}bg-red-200 text-red-900{% else %}bg-yellow-100 text-yellow-900{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <h1 class="text-2xl font-bold mb-6 text-center text-olive">Войти</h1>
+      <input type="text" name="username" placeholder="Логин" class="form-input" required>
+      <input type="password" name="password" placeholder="Пароль" class="form-input" required>
+      <button type="submit" class="btn-header w-full mt-2">Войти</button>
+      <div class="text-center mt-4">
+        <a href="/register" class="text-olive hover:underline">Нет аккаунта? Зарегистрируйтесь</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

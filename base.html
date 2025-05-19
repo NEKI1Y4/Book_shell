@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Давай Почитаем</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CDN для быстрого старта -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+    .bg-olive { background-color: #7B8C4E; }
+    .bg-beige { background-color: #F8F6E3; }
+    .text-olive { color: #7B8C4E; }
+
+    .btn-animated {
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 2px 8px 0 rgba(123,140,78,0.05);
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+      outline: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 10px;
+      border: 2px solid #7B8C4E;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-animated:hover, .btn-animated:focus {
+      box-shadow: 0 8px 24px 0 rgba(123,140,78,0.15);
+      transform: translateY(-2px) scale(1.06);
+      background-color: #E9E7D1 !important;
+      color: #5f693b !important;
+      border-color: #7B8C4E !important;
+      text-decoration: none;
+    }
+    .btn-animated:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+
+    .btn-olive {
+      background-color: #7B8C4E;
+      color: #F8F6E3;
+      border: 2px solid #7B8C4E;
+    }
+    .btn-beige {
+      background-color: #F8F6E3;
+      color: #7B8C4E;
+      border: 2px solid #7B8C4E;
+    }
+
+    .btn-header {
+      background: #F8F6E3;
+      color: #7B8C4E;
+      border: 2.5px solid #F8F6E3;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem 2rem;
+      margin: 0 0.5rem;
+      transition:
+        background 0.3s cubic-bezier(.4,0,.2,1),
+        color 0.3s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.3s cubic-bezier(.4,0,.2,1),
+        transform 0.2s cubic-bezier(.4,0,.2,1),
+        border-color 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 6px 0 rgba(123,140,78,0.08);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-header:hover, .btn-header:focus {
+      background: #E9E7D1;
+      color: #5f693b;
+      box-shadow: 0 6px 18px 0 rgba(123,140,78,0.16);
+      transform: translateY(-2px) scale(1.06);
+      border-color: #7B8C4E;
+      text-decoration: none;
+    }
+    .btn-header:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+
+    .nav-btn {
+      background: #F8F6E3;
+      color: #7B8C4E;
+      border: 2.5px solid #F8F6E3;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.05rem;
+      padding: 0.35rem 1.2rem;
+      margin: 0 0.18rem;
+      transition:
+        background 0.3s cubic-bezier(.4,0,.2,1),
+        color 0.3s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.3s cubic-bezier(.4,0,.2,1),
+        transform 0.2s cubic-bezier(.4,0,.2,1),
+        border-color 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 6px 0 rgba(123,140,78,0.08);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .nav-btn:hover, .nav-btn:focus {
+      background: #E9E7D1;
+      color: #5f693b;
+      box-shadow: 0 6px 18px 0 rgba(123,140,78,0.16);
+      transform: translateY(-2px) scale(1.07);
+      border-color: #7B8C4E;
+      text-decoration: none;
+    }
+    .nav-btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+  </style>
+</head>
+<body class="bg-beige min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-olive text-beige px-8 py-4 flex items-center justify-between shadow-lg">
+    <div class="flex items-center gap-2">
+      <img src="your-logo.svg" alt="Логотип" class="h-10">
+      <span class="text-xl font-bold">Давай Почитаем</span>
+    </div>
+    <nav class="flex gap-3">
+      <a href="/" class="nav-btn">Главная</a>
+      <a href="/books" class="nav-btn">Все книги</a>
+      <a href="/shelf" class="nav-btn">Моя полка</a>
+    </nav>
+    <div>
+      {% if session.get('user_id') %}
+        <a href="/profile" class="btn-header">Профиль</a>
+        <a href="/logout" class="btn-header ml-2">Выйти</a>
+      {% else %}
+        <a href="/login" class="btn-header">Войти</a>
+        <a href="/register" class="btn-header">Регистрация</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 container mx-auto px-4 py-16 flex items-center justify-center">
+    <section class="text-center max-w-2xl mx-auto">
+      <h1 class="text-5xl font-bold mb-6 text-olive">Добро пожаловать в<br>«Давай Почитаем»!</h1>
+      <p class="text-lg text-gray-700 mb-8">
+        Дружеский книжный клуб для обмена любимыми книгами и поиска новых друзей.<br>
+        Добавляй свои книги, читай электронные версии, вдохновляйся рекомендациями сообщества!
+      </p>
+      <div class="flex justify-center gap-6">
+        <a href="/add_book" class="btn-animated btn-olive px-6 py-3 shadow text-lg font-semibold">Добавить книгу на полку</a>
+        <a href="/books" class="btn-animated btn-beige px-6 py-3 shadow text-lg font-semibold">Посмотреть все</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-olive text-beige py-4 text-center mt-8">
+    &copy; 2025 Давай Почитаем. Все права защищены.
+  </footer>
+</body>
+</html>

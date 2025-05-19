@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация — Давай Почитаем</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #F8F6E3; }
+    .btn-header {
+      background: #F8F6E3; color: #7B8C4E; border: 2.5px solid #F8F6E3;
+      border-radius: 10px; font-weight: bold; font-size: 1.1rem; padding: 0.5rem 2rem; margin: 0 0.5rem;
+      transition: background 0.3s cubic-bezier(.4,0,.2,1), color 0.3s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1), border-color 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 6px 0 rgba(123,140,78,0.08); outline: none; cursor: pointer; position: relative; z-index: 0;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-header:hover, .btn-header:focus {
+      background: #E9E7D1; color: #5f693b; box-shadow: 0 6px 18px 0 rgba(123,140,78,0.16);
+      transform: translateY(-2px) scale(1.06); border-color: #7B8C4E; text-decoration: none;
+    }
+    .btn-header:active {
+      transform: scale(0.98); box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+    .form-input {
+      border-radius: 10px;
+      border: 2px solid #7B8C4E;
+      padding: 0.7rem 1.1rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+    .form-input:focus {
+      border-color: #89985c;
+      background: #f3f2e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="flex items-center justify-center min-h-screen">
+    <form method="post" class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
+      <h1 class="text-2xl font-bold mb-6 text-center text-olive">Регистрация</h1>
+      <input type="text" name="username" placeholder="Логин" class="form-input" required>
+      <input type="password" name="password" placeholder="Пароль" class="form-input" required>
+      <button type="submit" class="btn-header w-full mt-2">Зарегистрироваться</button>
+      <div class="text-center mt-4">
+        <a href="/login" class="text-olive hover:underline">Уже есть аккаунт? Войти</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

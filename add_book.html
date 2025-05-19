@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавить книгу — Давай Почитаем</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #F8F6E3; }
+    .btn-header {
+      background: #7B8C4E;
+      color: #fff;
+      border-radius: 10px;
+      padding: 0.7rem 0;
+      font-weight: bold;
+      width: 100%;
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+    }
+    .btn-header:hover {
+      background: #5f693b;
+    }
+    .form-input {
+      border-radius: 10px;
+      border: 2px solid #7B8C4E;
+      padding: 0.7rem 1.1rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+    .form-input:focus {
+      border-color: #89985c;
+      background: #f3f2e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="flex items-center justify-center min-h-screen">
+    <form method="post" class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-6 text-center text-olive">Добавить книгу</h1>
+      <input type="text" name="title" placeholder="Название книги" class="form-input" required>
+      <input type="text" name="author" placeholder="Автор" class="form-input" required>
+      <input type="text" name="ebook_link" placeholder="Ссылка на электронную книгу" class="form-input">
+      <button type="submit" class="btn-header mt-2">Добавить</button>
+      <div class="text-center mt-2">
+        <a href="{{ url_for('shelf') }}" class="text-olive hover:underline">Назад к полке</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

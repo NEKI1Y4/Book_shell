@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя полка — Давай Почитаем</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #F8F6E3; font-family: 'Montserrat', sans-serif; }
+    .nav-btn {
+      background: #F8F6E3;
+      color: #7B8C4E;
+      border: 2.5px solid #F8F6E3;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.05rem;
+      padding: 0.35rem 1.2rem;
+      margin: 0 0.18rem;
+      transition:
+        background 0.3s cubic-bezier(.4,0,.2,1),
+        color 0.3s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.3s cubic-bezier(.4,0,.2,1),
+        transform 0.2s cubic-bezier(.4,0,.2,1),
+        border-color 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 6px 0 rgba(123,140,78,0.08);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .nav-btn:hover, .nav-btn:focus {
+      background: #E9E7D1;
+      color: #5f693b;
+      box-shadow: 0 6px 18px 0 rgba(123,140,78,0.16);
+      transform: translateY(-2px) scale(1.07);
+      border-color: #7B8C4E;
+      text-decoration: none;
+    }
+    .nav-btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+    .btn-header {
+      background: #F8F6E3;
+      color: #7B8C4E;
+      border: 2.5px solid #F8F6E3;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem 2rem;
+      margin: 0 0.5rem;
+      transition:
+        background 0.3s cubic-bezier(.4,0,.2,1),
+        color 0.3s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.3s cubic-bezier(.4,0,.2,1),
+        transform 0.2s cubic-bezier(.4,0,.2,1),
+        border-color 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 6px 0 rgba(123,140,78,0.08);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-header:hover, .btn-header:focus {
+      background: #E9E7D1;
+      color: #5f693b;
+      box-shadow: 0 6px 18px 0 rgba(123,140,78,0.16);
+      transform: translateY(-2px) scale(1.06);
+      border-color: #7B8C4E;
+      text-decoration: none;
+    }
+    .btn-header:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px 0 rgba(123,140,78,0.08);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-[#8A9D5A] text-beige px-8 py-4 flex items-center justify-between shadow-lg">
+    <div class="flex items-center gap-2">
+      <img src="{{ url_for('static', filename='your-logo.svg') }}" alt="Логотип" class="h-8">
+      <span class="text-xl font-bold text-black">Давай Почитаем</span>
+    </div>
+    <nav class="flex gap-3">
+      <a href="/" class="nav-btn">Главная</a>
+      <a href="/books" class="nav-btn">Все книги</a>
+      <a href="/shelf" class="nav-btn">Моя полка</a>
+    </nav>
+    <div>
+      {% if session.get('user_id') %}
+        <a href="/profile" class="btn-header">Профиль</a>
+        <a href="/logout" class="btn-header ml-2">Выйти</a>
+      {% else %}
+        <a href="/login" class="btn-header">Войти</a>
+        <a href="/register" class="btn-header">Регистрация</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold mb-8 text-olive">Моя полка</h1>
+    <div class="w-full max-w-2xl mx-auto">
+      <ul class="divide-y divide-olive-200 bg-white rounded-xl shadow">
+        {% for book in books %}
+        <li class="flex items-center justify-between px-6 py-4">
+          <div>
+            <span class="font-bold text-lg">{{ book.title }}</span>
+            <span class="text-gray-600 ml-2">— {{ book.author }}</span>
+          </div>
+          <a href="{{ url_for('book_detail', book_id=book.id) }}" class="text-olive hover:underline font-semibold">Подробнее</a>
+        </li>
+        {% else %}
+        <li class="px-6 py-4 text-gray-500">Книг на полке пока нет.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+</body>
+</html>

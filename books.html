@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Все книги — Давай Почитаем</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #F8F6E3; font-family: 'Montserrat', sans-serif; }
+    .list-item {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px 0 rgba(123,140,78,0.09);
+      padding: 1.4rem 2rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: box-shadow 0.2s;
+    }
+    .list-item:hover {
+      box-shadow: 0 8px 20px 0 rgba(123,140,78,0.15);
+    }
+    .book-title {
+      font-weight: bold;
+      font-size: 1.18rem;
+      color: #242d13;
+    }
+    .book-author {
+      color: #7B8C4E;
+      font-size: 1rem;
+      margin-left: 0.8rem;
+      font-weight: 500;
+    }
+    .btn-more {
+      background: #7B8C4E;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.55rem 1.4rem;
+      font-size: 1.1rem;
+      margin-left: 1.2rem;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px 0 rgba(123,140,78,0.07);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-more:hover {
+      background: #6a7d3c;
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col items-center py-10" style="background:#f8f6e3;">
+    <h1 class="text-3xl font-bold mb-8 text-olive">Все книги</h1>
+    <div class="w-full max-w-3xl">
+      {% for book in books %}
+      <div class="list-item">
+        <div>
+          <span class="book-title">{{ book.title }}</span>
+          <span class="book-author">— {{ book.author }}</span>
+        </div>
+        <a href="{{ url_for('book_detail', book_id=book.id) }}" class="btn-more">Подробнее</a>
+      </div>
+      {% else %}
+      <div class="text-gray-400 py-8 text-center text-lg">Книг пока нет.</div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
